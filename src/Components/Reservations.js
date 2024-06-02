@@ -139,7 +139,7 @@ const Reservation = () => {
             </select>
             {errors.occasion && <span className="error-message">{errors.occasion}</span>}
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit"  role="button" className="btn btn-primary">
             Submit Reservation
           </button>
         </form>
