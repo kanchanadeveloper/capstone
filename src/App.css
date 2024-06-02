@@ -1,0 +1,15 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.error-message
+
+{
+    color:red
+}
+
+.head{
+    background-color: aquamarine;
+}
+
+footer{
+    background-color: aquamarine;
+}

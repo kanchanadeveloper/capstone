@@ -1,0 +1,27 @@
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+nav a:hover {
+    color: #b01313;
+}
+
+nav Link:active {
+    color: #b01313;
+}
+
+
+
