@@ -1,65 +1,65 @@
 import React, { useState } from 'react';
 
 const Reservation = () => {
-    const [formData, setFormData] = useState({
-        name:"",
-        email:"",
-        date: '',
-        time: '',
-        guests: '',
-        occasion: '',
-      });
-      const [errors, setErrors] = useState({});
-    
-      const handleChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value });
-      };
-    
-      const validateForm = () => {
-        let newErrors = {};
-        if (!formData.name) {
-            newErrors.name = 'Name is required.';
-          } else if (formData.name.length < 3) {
-            newErrors.name = 'Name must be at least 3 characters long.';
-          }
-      
-          if (!formData.email || !/^\S+@\S+\.\S+$/.test(formData.email)) {
-            newErrors.email = 'Please enter a valid email address.';
-          }
-    
-        if (!formData.date) {
-          newErrors.date = 'Please enter a date.';
-        }
-        if (!formData.time) {
-          newErrors.time = 'Please enter a time.';
-        }
-        if (!formData.guests || parseInt(formData.guests, 10) <= 0) {
-          newErrors.guests = 'Please enter a valid number of guests (greater than 0).';
-        }
-        if (!formData.occasion) {
-          newErrors.occasion = 'Please select an occasion.';
-        }
-    
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0; // true if no errors
-      };
-    
-      const handleSubmit = (event) => {
-        event.preventDefault();
-    
-        if (validateForm()) {
-          alert(
-            `Your reservation has been submitted! \n Details: \n Date: ${formData.date} \n Time: ${formData.time} \n Guests: ${formData.guests} \n Occasion: ${formData.occasion}`
-          );
-          // Simulate form reset after successful submission
-          setFormData({ date: '', time: '', guests: '', occasion: '' });
-          setErrors({});
-        }
-      };
-    
-      return (
-        <div className="row p-4">
-            <div className="col-md-6 offset-md-3">
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    date: '',
+    time: '',
+    guests: '',
+    occasion: '',
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.name) {
+      newErrors.name = 'Name is required.';
+    } else if (formData.name.length < 3) {
+      newErrors.name = 'Name must be at least 3 characters long.';
+    }
+
+    if (!formData.email || !/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+
+    if (!formData.date) {
+      newErrors.date = 'Please enter a date.';
+    }
+    if (!formData.time) {
+      newErrors.time = 'Please enter a time.';
+    }
+    if (!formData.guests || parseInt(formData.guests, 10) <= 0) {
+      newErrors.guests = 'Please enter a valid number of guests (greater than 0).';
+    }
+    if (!formData.occasion) {
+      newErrors.occasion = 'Please select an occasion.';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // true if no errors
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (validateForm()) {
+      alert(
+        `Your reservation has been submitted! \n Details: \n Date: ${formData.date} \n Time: ${formData.time} \n Guests: ${formData.guests} \n Occasion: ${formData.occasion}`
+      );
+      // Simulate form reset after successful submission
+      setFormData({ date: '', time: '', guests: '', occasion: '' });
+      setErrors({});
+    }
+  };
+
+  return (
+    <div className="row p-4">
+      <div className="col-md-6 offset-md-3">
         <form onSubmit={handleSubmit}>
           <h2>Reserving a Table</h2>
           <div className="form-group mb-3"> {/* Added Bootstrap classes */}
@@ -86,7 +86,7 @@ const Reservation = () => {
             />
             {errors.date && <span className="error-message">{errors.date}</span>}
           </div>
-          
+
           <div className="form-group mb-3"> {/* Added Bootstrap classes */}
             <label htmlFor="date">Date:</label>
             <input
@@ -139,14 +139,14 @@ const Reservation = () => {
             </select>
             {errors.occasion && <span className="error-message">{errors.occasion}</span>}
           </div>
-          <button type="submit"  role="button" className="btn btn-primary">
+          <button type="submit" role="button" className="btn btn-primary">
             Submit Reservation
           </button>
         </form>
-        </div>
-        </div>
-      );
-    };
+      </div>
+    </div>
+  );
+};
 
 
 export default Reservation;

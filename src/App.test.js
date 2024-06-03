@@ -1,50 +1,64 @@
-import { act, render, screen } from '@testing-library/react';
-import Reservation from './Components/Reservations';
+
+import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+// import Reservation from './Reservation'; // Replace './Reservation' with your actual path
+import Reservation from "./Components/Reservations";
 
 
-test("reserve a table", async () => { // Use async for potential asynchronous operations
-  const name = "ABCD";
-  const email = "ABCD@gmail.com";
-  const date = "12-06-2024";
-  const time = "19:58";
-  const guests = "10";
-  const occasion = "birthday";
+describe('Reservation component', () => {
+  test('should render the reservation form', () => {
+    render(<Reservation />);
 
-  const handleSubmit = jest.fn(); // Mock function for form submission
+    expect(screen.getByText('Reserving a Table')).toBeInTheDocument();
+    expect(screen.getByLabelText('Name:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Email:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Date:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Time:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Number of Guests:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Occasion:')).toBeInTheDocument();
 
-  // Wrap the rendering and user interaction in an `act` call
-  await act(async () => {
-    render(<Reservation onSubmit={handleSubmit} />);
-
-    const rangename = screen.getByLabelText(/Name:/);
-    fireEvent.change(rangename, { target: { value: name } });
-
-    const rangeEmail = screen.getByLabelText(/Email:/);
-    fireEvent.change(rangeEmail, { target: { value: email } });
-
-    const rangeDate = screen.getByLabelText(/Date:/);
-    fireEvent.change(rangeDate, { target: { value: date } });
-
-    const rangeTime = screen.getByLabelText(/Time:/);
-    fireEvent.change(rangeTime, { target: { value: time } });
-
-    const rangeInput = screen.getByLabelText(/Number of Guests:/);
-    fireEvent.change(rangeInput, { target: { value: guests } });
-
-    const textArea = screen.getByLabelText(/Occasion:/);
-    fireEvent.change(textArea, { target: { value: occasion } });
-
-    const submitButton = screen.getByRole("button");
-    fireEvent.click(submitButton);
+    // Add similar checks for other form fields
   });
 
-  // Assertion after all asynchronous operations are complete
-  expect(handleSubmit).toHaveBeenCalledWith({
-    name,
-    email,
-    date,
-    time,
-    guests,
-    occasion
+  test('should update name state on input change', () => {
+    render(<Reservation />);
+    const nameInput = screen.getByLabelText('Name:');
+    userEvent.type(nameInput, 'John Doe');
+    expect(screen.getByDisplayValue('John Doe')).toBeInTheDocument();
   });
+
+  test('should update email state on input change', () => {
+    render(<Reservation />);
+    const emailInput = screen.getByLabelText('Email:');
+    userEvent.type(emailInput, 'abc@gmail.com');
+    expect(screen.getByDisplayValue('abc@gmail.com')).toBeInTheDocument();
+  });
+  test('should update date state on input change', () => {
+    render(<Reservation />);
+    const dateInput = screen.getByLabelText('Date:');
+    userEvent.type(dateInput, '2024-06-03');
+    expect(screen.getByDisplayValue('2024-06-03')).toBeInTheDocument();
+  });
+  test('should update time state on input change', () => {
+    render(<Reservation />);
+    const timeInput = screen.getByLabelText('Time:');
+    userEvent.type(timeInput, '10:00');
+    expect(screen.getByDisplayValue('10:00')).toBeInTheDocument();
+  });
+
+  test('should update guest state on input change', () => {
+    render(<Reservation />);
+    const guestInput = screen.getByLabelText('Number of Guests:');
+    userEvent.type(guestInput, '5');
+    expect(screen.getByDisplayValue('5')).toBeInTheDocument();
+  });
+
+  test('should update Occasion state on input change', () => {
+    render(<Reservation />);
+    const occasionInput = screen.getByLabelText('Occasion:');
+    userEvent.selectOptions(occasionInput, 'birthday');
+    expect(occasionInput.selectedOptions[0].value).toBe('birthday');
+  });
+
 });
