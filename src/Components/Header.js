@@ -1,45 +1,34 @@
-import Logo from "../../src/Assets/Logo .svg";
-import "./Header.css"
+
 import { Link } from "react-router-dom";
 function Header() {
     return (
         <>
-            <div className="container d-flex justify-content-between head">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <Link to="/" className="logo">
-                    <img src={Logo} alt="The Little Lemon Website Logo" />
+                       <h1 className="text-primary m-0"><i className="fa fa-utensils me-3"></i>Restoran</h1>
                 </Link>
-                <nav className="navbar navbar-expand-sm navbar-light">
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <Link to="/" className="nav-link">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/about" className="nav-link">About Us</Link>
-
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/menu" className="nav-link">Menus</Link>
-
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/reservations" className="nav-link">Reserve a Table</Link>
-
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/contact" className="nav-link">Contact Us</Link>
-
-                            </li>
-
-                        </ul>
-                    </div>
-
-                </nav>
-            </div>
-
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span className="fa fa-bars"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarCollapse">
+                    <div className="navbar-nav ms-auto py-0 pe-4">
+                              <Link to="/" className="nav-item nav-link">Home</Link>
+                              <Link to="/about" className="nav-item nav-link">About</Link>
+                              <Link to="/service" className="nav-item nav-link">Service</Link>
+                              <Link to="/menu" className="nav-item nav-link">Menu</Link>
+                              <div className="nav-item dropdown">
+                            <a href="/" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div className="dropdown-menu m-0">
+                              <Link to="/bookings" className="dropdown-item">Booking</Link>
+                              <Link to="/team" className="dropdown-item">Our Team</Link>
+                              <Link to="/testimonial" className="dropdown-item">Testimonial</Link>
+                            </div>
+                            </div>
+                            <Link to="/contact" className="nav-item nav-link">Contact</Link>
+                            </div>
+                            <Link to="/reservations"  className="btn btn-primary py-2 px-4">Book A Table</Link>
+                          </div>
+            </nav>
 
         </>
     );
