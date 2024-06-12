@@ -3,7 +3,7 @@ import './App.css';
 import Footer from './Components/Footer';
 import Header from './Components/Header'
 import Main from './Components/Main'
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import SpinnerLoad  from './Components/SpinnerLoad';
 // import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
@@ -31,14 +31,14 @@ function App() {
   </Helmet> */}
  <div className="container-xxl bg-white p-0">
 
-        <BrowserRouter>
+        <HashRouter>
           <SpinnerLoad />
           <Header />
           <Main />
           <Footer />
        
 
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </>
   );
